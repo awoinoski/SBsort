@@ -1,0 +1,41 @@
+#include "sort.h"
+
+int analyze_data(raw_event *data)
+{
+  int c;
+
+  tot++;
+  c=data->sbt.h.TSHP;
+  if(c>=0)
+    if(c<16)
+      dc[c]++;
+
+  return SEPARATOR_DISCARD;
+}
+/*==============================================================================*/
+int main(int argc, char *argv[])
+{
+  input_names_type *name;
+  int k;
+
+  if(argc!=2)
+    {
+      printf("check_Diag_Class sfu_input_data\n");
+      exit(-1);
+    }
+
+  for(k=0;k<16;k++)
+    dc[k]=0;
+
+  tot=0;
+  
+  printf("Program displays classes for diagnostic signals.\n");
+  
+  name=(input_names_type*)malloc(sizeof(input_names_type));
+  memset(name,0,sizeof(input_names_type));
+  strcpy(name->fname.inp_data,argv[1]);
+  sort(name);
+
+  for(k=0;k<16;k++)
+    printf("0x0%1.1x %8d %8.1f\n",k,dc[k],(float)dc[k]/(float)tot*100.);
+}

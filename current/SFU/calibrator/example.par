@@ -1,0 +1,7 @@
+#Parameters for the energy calibrator using multiple spectra for different sources
+#Structure of this file is important, do not change without understanding
+#Source     source_info_file                   spn_file_name     spn_spectrum_id
+cs137       cs137.sou                          run00257.spx         0
+ba133       ba133.sou                          run00259.spx         0
+eu152       eu152.sou                          run00260.spx         0
+co60        co60.sou                           run00258.spx         0
