@@ -90,24 +90,15 @@ typedef struct cal_event
 }cal_event;
 
 
-typedef struct HPGe_cal_par
+typedef struct 
 {
   int   ceflag[NPOS];
   float ce[NPOS][3];
   float contr_e;
-}HPGe_cal_par;
+}HPGe_calibration_parameters;
 
 
-void display_raw_event(cal_event*);
-void display_rheader(cRheader*);
-void display_sheader(cSheader*);
-void display_channel(int,cChannel*);
-void display_channel_legend();
-void display_NIMFit_legend();
-void display_NIMFit(int,cNimfit*);
-
-int verify_ts(cal_event*,unsigned long long int*,unsigned long long int*);
-int verify_ts_trig(cSBTRG*,unsigned long long int*,unsigned long long int*);
-int verify_ts_hpge(cSBCSS*,unsigned long long int*,unsigned long long int*);
-int verify_ts_aux(cSBAUX*,unsigned long long int*,unsigned long long int*);
+void initialize_HPGe_calibration(HPGe_calibration_parameters*, char*);
+void read_HPGe_e_cal_par(HPGe_calibration_parameters*, char*);
+void summarize_HPGe_calibration(HPGe_calibration_parameters* , char*);
 #endif

@@ -1,2 +1,4 @@
 Energy_spectra_contraction_factor,1
-Energy_calibration_parameters, stuff
+Energy_calibration_parameters,
+1,a0,a1,a2
+2,a0,a1,a2

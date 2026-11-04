@@ -6,5 +6,6 @@ bin/
 *~
 *.o
 *.out
+*.a
 build/
 
