@@ -1,5 +1,24 @@
 #include "SB-cal.h"
 /********************************************************************/
+void initialize_TIGRESS_calibration(HPGe_calibration_parameters *HPGe_cal_par, char *name)
+{
+  FILE *inp;
+  char str1[256],str2[256];
+
+  memset(HPGe_cal_par,0,sizeof(*HPGe_cal_par));
+
+  
+  if((inp=fopen(name,"r"))==NULL)
+      {
+         printf("\nFile %s can not be opened\n",name);
+         exit(EXIT_FAILURE);
+      }
+  else
+        printf("calibration parameters read from file %s\n",name);
+
+  
+}
+/********************************************************************/
 void read_HPGe_e_cal_par(HPGe_calibration_parameters *HPGe_cal_par, char *filename)
 {
   FILE *inp;

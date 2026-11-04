@@ -37,7 +37,7 @@ typedef struct sheader
   int EHP;
   int THP;
   int TSHP;
-} pheader;
+} sheader;
 
 typedef struct rheader
 {

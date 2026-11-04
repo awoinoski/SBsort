@@ -27,7 +27,7 @@ typedef struct cChannel
   int timestamp_up;
   int charge;
   int cfd;
-}channel;
+}cChannel;
 
 
 typedef struct cSheader
@@ -38,7 +38,7 @@ typedef struct cSheader
   int EHP;
   int THP;
   int TSHP;
-} pheader;
+} cSheader;
 
 typedef struct cRheader
 {
@@ -94,7 +94,7 @@ typedef struct HPGe_cal_par
 {
   int   ceflag[NPOS];
   float ce[NPOS][3];
-}
+}HPGe_cal_par;
 
 
 void display_raw_event(cal_event*);
