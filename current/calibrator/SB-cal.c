@@ -6,6 +6,7 @@ void initialize_TIGRESS_calibration(HPGe_calibration_parameters *HPGe_cal_par, c
   char str1[256],str2[256];
 
   memset(HPGe_cal_par,0,sizeof(*HPGe_cal_par));
+  HPGe_cal_par->contr_e=1.;
 
   
   if((inp=fopen(name,"r"))==NULL)
@@ -13,10 +14,33 @@ void initialize_TIGRESS_calibration(HPGe_calibration_parameters *HPGe_cal_par, c
          printf("\nFile %s can not be opened\n",name);
          exit(EXIT_FAILURE);
       }
+  
   else
         printf("calibration parameters read from file %s\n",name);
 
-  
+  if(fgets(str1,256,inp)!=NULL)
+    {
+      if(fgets(str1,256,inp)!=NULL)
+	{
+	  while(fscanf(inp,"%s %s",str1,str2)!=EOF)
+	    {
+	      if(strcmp(str1,"Energy_spectra_contraction_factor")==0)
+		HPGe_cal_par->contr_e=atof(str2);
+
+	      if(strcmp(str1,"Energy_calibration_parameters")==0)
+		read_HPGe_e_cal_par(TIGRESS_cal_par,str2);
+	    }
+	}
+    }
+
+  else
+    {
+      printf("Wrong structure of file %s\n",name);
+      printf("Aborting sort\n");
+      exit(1);
+    }
+  fclose(inp);
+    
 }
 /********************************************************************/
 void read_HPGe_e_cal_par(HPGe_calibration_parameters *HPGe_cal_par, char *filename)

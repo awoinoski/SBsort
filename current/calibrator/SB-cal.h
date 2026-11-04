@@ -94,6 +94,7 @@ typedef struct HPGe_cal_par
 {
   int   ceflag[NPOS];
   float ce[NPOS][3];
+  float contr_e;
 }HPGe_cal_par;
 
 
