@@ -2,6 +2,7 @@
 #define __SB_CAL_H
 
 #include "SB-format.h"
+#include "SB-common.h"
 
 
 #define NPOS           8
@@ -101,4 +102,5 @@ typedef struct
 void initialize_HPGe_calibration(HPGe_calibration_parameters*, char*);
 void read_HPGe_e_cal_par(HPGe_calibration_parameters*, char*);
 void summarize_HPGe_calibration(HPGe_calibration_parameters* , char*);
+void calibrate_HPGe(raw_event*, HPGe_calibration_parameters*, cal_event*);
 #endif

@@ -103,3 +103,52 @@ void summarize_HPGe_calibration(HPGe_calibration_parameters *HPGe_cal_par, char 
 
   fclose(out);
 }
+/********************************************************************/
+void calibrate_HPGe(raw_event *raw_event, HPGe_calibration_parameters *HPGe_cal_par, cal_event *cal_ev)
+{
+  int pos;
+  double ran,ren,e;
+  float t;
+  
+  memset(cal_ev,0,sizeof(cal_event));
+
+  /* HPGe energy calibration */
+  if(raw_event->sbc.h.Efold>0)
+    for(pos=1;pos<NPOS;pos++)
+      if(HPGe_cal_par->ceflag[pos]==1)
+	{
+
+	  ran=(double)rand()/(double)RAND_MAX-0.5;
+	  ren=raw_event->sbc.hpge[pos].charge+ran;
+	  e=HPGe_cal_par->ce[pos][0]+HPGe_cal_par->ce[pos][1]*ren+HPGe_cal_par->ce[pos][2]*ren*ren;
+
+	  if(e>0)
+	    if(e<S65K)
+	      {
+		cal_ev->sbc.hpge[pos].charge=e;
+		cal_ev->sbc.h.Efold++;
+		cal_ev->sbc.h.EHP|=1;
+	      }
+	}
+  /* end HPGe energy calibration */
+
+  /* HPGe time information passthrough (later can be a calibration if needed) */
+  if(raw_event->sbc.h.Efold>0)
+    for(pos=1;pos<NPOS;pos++)
+    {
+      t=raw_event->sbc.t0[pos];
+
+      if(t>0)
+	if(t<S65K)
+	  {
+	    cal_ev->sbc.t0[pos]=t;
+	    cal_ev->sbc.h.TSfold++;
+	    cal_ev->sbc.h.TSHP|=1;
+	  }
+    }
+  /* End HPGe time information passthrough */
+
+  
+  
+}
+
