@@ -4,15 +4,18 @@ ROOT =  $(shell $(ROOTSYS)/bin/root-config --glibs)
 INC = -I$(ROOTINC)\
       -I$(SBsort)/current/SB-format\
       -I$(SBsort)/current/midas/decoder\
-      -I$(SBsort)/current/utils
+      -I$(SBsort)/current/utils\
+      -I$(SBsort)/current/calibrator
 
 BIN=$(SBsort)/bin/sfu
 
 SORT= sort.o\
-      $(SBsort)/current/SB-format/SB-format.a
+      $(SBsort)/current/SB-format/SB-format.a\
+      $(SBsort)/current/calibrator/calibrator.a\
+      $(SBsort)/current/utils/utils.a
 
 sort:$(SORT)
-	$(CC) -o $(BIN)/coin $(SORT) $(CFLAGS) $(ROOT) -lm -ldl
+	$(CC) -o $(BIN)/css_energy $(SORT) $(CFLAGS) $(ROOT) -lm -ldl
 
 sort.o:sort.c sort.h
 	$(CC) -c -o sort.o sort.c $(CFLAGS) $(INC)

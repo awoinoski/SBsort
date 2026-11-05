@@ -7,22 +7,22 @@ all:
 	(cd  time && make -is clean && make && make -is clean && cd ..)
 	echo DONE: TIME.
 
-	echo Making ENERGY.
-	(cd  energy && make -is clean && make && make -is clean && cd ..)
-	echo DONE: ENERGY.
+	echo Making HPGe.
+	(cd  hpge && make -is clean && make && make -is clean && cd ..)
+	echo DONE: HPGe.
 
 	echo Making DIAG.
 	(cd  diag && make -is clean && make && make -is clean && cd ..)
 	echo DONE: DIAG.
 
-	echo Making CALIBRATOR.
-	(cd  calibrator && make -is clean && make && make -is clean && cd ..)
-	echo DONE: CALIBRATOR.
+	echo Making CALIBRATE.
+	(cd  calibrate && make -is clean && make && make -is clean && cd ..)
+	echo DONE: CALIBRATE.
 
 clean:
 	(cd check           && make -is clean && cd ..)
 	(cd time            && make -is clean && cd ..)
 	(cd energy          && make -is clean && cd ..)
 	(cd diag            && make -is clean && cd ..)
-	(cd calibrator      && make -is clean && cd ..)
+	(cd calibrate       && make -is clean && cd ..)
 	rm -f *~
