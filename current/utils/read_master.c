@@ -33,6 +33,11 @@ void read_master(char *name, input_names_type *inp_names)
 	      inp_names->flag.out_data_list=1;
 	      strcpy(inp_names->fname.out_data_list,str2);
 	    }
+	  if(strcmp(str1,"HPGe_cal_par")==0)
+	    {
+	      inp_names->flag.hpge_cal_par=1;
+	      strcpy(inp_names->fname.hpge_cal_par,str2);
+	    }
 	  if(strcmp(str1,"cluster_file")==0)
 	    {
 	      inp_names->flag.cluster_file=1;

@@ -10,7 +10,8 @@ struct fname
 {
   char inp_data[132];
   char out_data[132];
-  char out_data_list[132]; 
+  char out_data_list[132];
+  char hpge_cal_par[132];
   char cluster_file[132];
   char root_output_file[132];
   char root_gate_file[132];
@@ -23,6 +24,7 @@ struct flag
   int inp_data;
   int out_data;
   int out_data_list;
+  int hpge_cal_par;
   int separate;
   int cluster_file;
   int root_output_file;

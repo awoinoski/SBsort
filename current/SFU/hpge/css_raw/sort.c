@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
       exit(EXIT_FAILURE);
     }
 
-  for(pos=0;pos<NPOS+1;pos++)
+  for(pos=0;pos<NPOS;pos++)
     fwrite(hist[pos],S32K*sizeof(int),1,output);
 	
    fclose(output);
