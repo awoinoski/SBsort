@@ -7,6 +7,10 @@ all:
 	(cd  Triggers && make -is clean && make && make -is clean && cd ..)
 	echo DONE: TRIGGERS.
 
+	echo Making css_Efold.
+	(cd  css_Efold && make -is clean && make && make -is clean && cd ..)
+	echo DONE: CSS_EFOLD.
+
 	echo Making Rate.
 	(cd Rate r && make -is clean && make && make -is clean && cd ..)
 	echo DONE: CHECK_RATE.
@@ -18,6 +22,14 @@ all:
 	echo Making check_EventTimeDifference.
 	(cd EventTimeDifference r && make -is clean && make && make -is clean && cd ..)
 	echo DONE: CHECK_EVENTTIMEDIFFERENCE.
+
+	echo Making check_gg_CFDtiming.
+	(cd gg_CFDtiming r && make -is clean && make && make -is clean && cd ..)
+	echo DONE: CHECK_GG_CFDTIMING.
+
+	echo Making check_gg_FITtiming.
+	(cd gg_FITtiming r && make -is clean && make && make -is clean && cd ..)
+	echo DONE: CHECK_GG_FITTIMING.
 
 	echo Making check_TimeStamps.
 	(cd TimeStamps r && make -is clean && make && make -is clean && cd ..)

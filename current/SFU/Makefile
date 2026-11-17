@@ -22,7 +22,7 @@ all:
 clean:
 	(cd check           && make -is clean && cd ..)
 	(cd time            && make -is clean && cd ..)
-	(cd energy          && make -is clean && cd ..)
+	(cd hpge            && make -is clean && cd ..)
 	(cd diag            && make -is clean && cd ..)
 	(cd calibrate       && make -is clean && cd ..)
 	rm -f *~
