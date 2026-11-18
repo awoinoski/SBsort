@@ -12,7 +12,7 @@ SORT= sort.o\
       $(SBsort)/current/SB-format/SB-format.a
 
 sort:$(SORT)
-	$(CC) -o $(BIN)/check_gg_CFDtiming $(SORT) $(CFLAGS) $(ROOT) -lm -ldl
+	$(CC) -o $(BIN)/css_T0dist $(SORT) $(CFLAGS) $(ROOT) -lm -ldl
 
 sort.o:sort.c sort.h
 	$(CC) -c -o sort.o sort.c $(CFLAGS) $(INC)

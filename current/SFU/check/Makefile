@@ -23,14 +23,6 @@ all:
 	(cd EventTimeDifference r && make -is clean && make && make -is clean && cd ..)
 	echo DONE: CHECK_EVENTTIMEDIFFERENCE.
 
-	echo Making check_gg_CFDtiming.
-	(cd gg_CFDtiming r && make -is clean && make && make -is clean && cd ..)
-	echo DONE: CHECK_GG_CFDTIMING.
-
-	echo Making check_gg_FITtiming.
-	(cd gg_FITtiming r && make -is clean && make && make -is clean && cd ..)
-	echo DONE: CHECK_GG_FITTIMING.
-
 	echo Making check_TimeStamps.
 	(cd TimeStamps r && make -is clean && make && make -is clean && cd ..)
 	echo DONE: CHECK_TIMESTAMPS.

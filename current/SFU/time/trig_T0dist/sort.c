@@ -2,19 +2,7 @@
 
 int analyze_data(raw_event *data)
 {
-  int pos;
-  long diff;
-
-  if(data->sbc.h.Efold>1)
-    {
-    for(pos=2;pos<NPOS;pos++)
-      if((data->sbc.h.EHP&(1<<(pos-1)))!=0)
-	{
-	  diff=(data->sbc.hpge[0].cfd-data->sbc.hpge[pos-1].cfd)*0.625;
-	  h->Fill((int)(diff));
-	}
-    }
-
+  h->Fill(data->sbt.fit[0].tr*10);
   return SEPARATOR_DISCARD;
 }
 /*============================================================================*/
@@ -27,14 +15,14 @@ int main(int argc, char *argv[])
   
   if(argc!=2)
     {
-      printf("check_gg_CFDtiming sfu_data_file\n");
+      printf("trig_T0dist sfu_data_file\n");
       exit(-1);
     }
   
-  h = new TH1D("Time Difference [ns]","Time Difference [ns]",S4K,-S2K,S2K-1);
+  h = new TH1D("T0","NIM Trigger T0 Distribution",300,0,(300-1)*10);
   h->Reset();
   
-  printf("Program sorts histogram of time differences CSS CFD timestamps from the same event.\n");
+  printf("Program sorts histogram of t0 from the trigger NIM waveform fitting. \n");
 
   name=(input_names_type*)malloc(sizeof(input_names_type));
   memset(name,0,sizeof(input_names_type));
@@ -42,9 +30,11 @@ int main(int argc, char *argv[])
   sort(name); 
   
   theApp=new TApplication("App", &argc, argv);
-  canvas = new TCanvas("Time Difference", "Time Difference",10,10, 500, 300);
+  canvas = new TCanvas("T0", "T0",10,10, 500, 300);
   canvas->cd();
-  // gPad->SetLogy(1);
+  gPad->SetLogy(1);
+  h->GetXaxis()->SetTitle("T0 Time [ns]");
+  h->GetYaxis()->SetTitle("Frequency");
   h->Draw();
   
   theApp->Run(kTRUE);

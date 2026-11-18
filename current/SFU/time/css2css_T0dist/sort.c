@@ -13,7 +13,7 @@ int analyze_data(raw_event *data)
 	  diff=(data->sbc.t0[0]-data->sbc.t0[pos-1])*10;
 	  h->Fill((int)(diff));
 
-	  //printf("CSS1: %f, CSS%d: %f, Diff: %f \n",data->sbc.t0[0],pos, data->sbc.t0[pos-1], diff);
+	  printf("CSS1: %f, CSS%d: %f, Diff: %f \n",data->sbc.t0[0],pos, data->sbc.t0[pos-1], diff);
 	}
 
     }
@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
   
   if(argc!=2)
     {
-      printf("check_gg_FITtiming sfu_data_file\n");
+      printf("css2css_T0dist sfu_data_file\n");
       exit(-1);
     }
   
-  h = new TH1D("Time Difference","Time Difference [ns]",S4K,-S2K,S2K-1);
+  h = new TH1D("T0 Difference","CSS to CSS T0 Timing",200,-100,100);
   h->Reset();
   
   printf("Program sorts histogram of time differences of t0 from CSS waveform fitting from the same event.\n");
@@ -46,7 +46,9 @@ int main(int argc, char *argv[])
   theApp=new TApplication("App", &argc, argv);
   canvas = new TCanvas("Time Difference", "Time Difference",10,10, 500, 300);
   canvas->cd();
-  // gPad->SetLogy(1);
+  gPad->SetLogy(1);
+  h->GetXaxis()->SetTitle("T0 Time difference [ns]");
+  h->GetYaxis()->SetTitle("Frequency");
   h->Draw();
   
   theApp->Run(kTRUE);
